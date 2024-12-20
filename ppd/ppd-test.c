@@ -3059,7 +3059,7 @@ check_filters(ppd_file_t *ppd,       // I - PPD file
     type[256],           // Type for filter
     dstsuper[16],        // Destination super-type for filter
     dsttype[256],        // Destination type for filter
-    program[128],        // Program/filter name
+    program[1024],        // Program/filter name
     pathprog[1024];      // Complete path to program/filter
   int cost;              // Cost of filter
   const char *prefix;    // WARN/FAIL prefix
@@ -3102,7 +3102,7 @@ check_filters(ppd_file_t *ppd,       // I - PPD file
     }
 
     if (!attr->value ||
-	sscanf(attr->value, "%15[^/]/%255s%d%*[ \t]%127[^\n]", super, type,
+	sscanf(attr->value, "%15[^/]/%255s%d%*[ \t]%1023[^\n]", super, type,
 	       &cost, program) != 4)
     {
       if (!warn && !errors && !verbose)
@@ -3272,7 +3272,7 @@ check_filters(ppd_file_t *ppd,       // I - PPD file
 
     if (!attr->value ||
         sscanf(attr->value,
-	       "%15[^/]/%255s%*[ \t]%15[^/]/%255s%d%*[ \t]%127[^\n]",
+	       "%15[^/]/%255s%*[ \t]%15[^/]/%255s%d%*[ \t]%1023[^\n]",
 	       super, type, dstsuper, dsttype, &cost, program) != 6)
     {
       if (!warn && !errors && !verbose)
@@ -3452,7 +3452,7 @@ check_filters(ppd_file_t *ppd,       // I - PPD file
     }
 
     if (!attr->value ||
-        sscanf(attr->value, "%15[^/]/%255s%d%*[ \t]%127[^\n]", super, type,
+        sscanf(attr->value, "%15[^/]/%255s%d%*[ \t]%1023[^\n]", super, type,
 	       &cost, program) != 4)
     {
       if (!warn && !errors && !verbose)
